@@ -6,7 +6,7 @@ import { axios_instance } from "../config"
 import Cookies from "universal-cookie"
 import moment from "moment"
 
-const BersyaratBox = ({student}) => {
+const BersyaratBox = ({ student }) => {
     return (
         <Box bg={"yellow.400"} rounded={"md"} p={5}>
             <TableContainer>
@@ -20,10 +20,10 @@ const BersyaratBox = ({student}) => {
                             <Td>Nama</Td>
                             <Td>{student.nama}</Td>
                         </Tr>
-                        <Tr>
+                        {/* <Tr>
                             <Td>Jenis Kelamin</Td>
                             <Td>{student.kelamin}</Td>
-                        </Tr>
+                        </Tr> */}
                         <Tr>
                             <Td>Kelas</Td>
                             <Td>{student.kelas}</Td>
@@ -32,13 +32,14 @@ const BersyaratBox = ({student}) => {
                 </Table>
             </TableContainer>
             <Box mt={5} textAlign={"center"}>
-                <Text fontWeight={"medium"} fontSize={"lg"}>{student.deskripsi}</Text>
+                <Text fontWeight={"medium"} fontSize={"xl"}>Anda lulus BERSYARAT</Text>
+                <Text fontWeight={"medium"}>{student.deskripsi}</Text>
             </Box>
         </Box>
     )
 }
 
-const GagalBox = ({student}) => {
+const GagalBox = ({ student }) => {
     return (
         <Box bg={"red.300"} rounded={"md"} p={5}>
             <TableContainer>
@@ -52,10 +53,10 @@ const GagalBox = ({student}) => {
                             <Td>Nama</Td>
                             <Td>{student.nama}</Td>
                         </Tr>
-                        <Tr>
+                        {/* <Tr>
                             <Td>Jenis Kelamin</Td>
                             <Td>{student.kelamin}</Td>
-                        </Tr>
+                        </Tr> */}
                         <Tr>
                             <Td>Kelas</Td>
                             <Td>{student.kelas}</Td>
@@ -64,13 +65,14 @@ const GagalBox = ({student}) => {
                 </Table>
             </TableContainer>
             <Box mt={5} textAlign={"center"}>
-                <Text fontWeight={"medium"} fontSize={"lg"}>{student.deskripsi}</Text>
+                <Text fontWeight={"medium"} fontSize={"xl"}>Maaf Anda TIDAK LULUS</Text>
+                <Text fontWeight={"medium"}>{student.deskripsi}</Text>
             </Box>
         </Box>
     )
 }
 
-const LulusBox = ({student}) => {
+const LulusBox = ({ student }) => {
     return (
         <Box bg={"whatsapp.400"} rounded={"md"} p={5}>
             <TableContainer>
@@ -84,10 +86,10 @@ const LulusBox = ({student}) => {
                             <Td>Nama</Td>
                             <Td>{student.nama}</Td>
                         </Tr>
-                        <Tr>
+                        {/* <Tr>
                             <Td>Jenis Kelamin</Td>
                             <Td>{student.kelamin}</Td>
-                        </Tr>
+                        </Tr> */}
                         <Tr>
                             <Td>Kelas</Td>
                             <Td>{student.kelas}</Td>
@@ -96,7 +98,8 @@ const LulusBox = ({student}) => {
                 </Table>
             </TableContainer>
             <Box mt={5} textAlign={"center"}>
-                <Text fontWeight={"medium"} fontSize={"lg"}>{student.deskripsi}</Text>
+                <Text fontWeight={"bold"} fontSize={"2xl"}>Selamat Anda LULUS</Text>
+                <Text fontWeight={"medium"}>{student.deskripsi}</Text>
             </Box>
         </Box>
     )
@@ -157,7 +160,7 @@ const Welcome = () => {
                             <InputLeftElement pointerEvents={"none"} children={<Icon as={BsPersonFill} />} />
                             <Input placeholder="NISN (Nomor Induk Siswa Nasional)" onChange={(ev) => setNisn(ev.target.value)} value={nisn} />
                         </InputGroup>
-                        <Button colorScheme={"facebook"} isLoading={isLoading} isDisabled={nisn.length == 0 || isDisabled} onClick={findStudent}>{isDisabled? `Fitur dibuka pada ${moment(tanggal).locale("id").format('DD MMMM, HH:mm')}` : "Cek Kelulusan" }</Button>
+                        <Button colorScheme={"facebook"} isLoading={isLoading} isDisabled={nisn.length == 0 || isDisabled} onClick={findStudent}>{isDisabled ? `Fitur dibuka pada ${moment(tanggal).locale("id").format('DD MMMM, HH:mm')}` : "Cek Kelulusan"}</Button>
                     </Stack>
                     {Object.keys(student).length !== 0 ? student.status == "lulus" ? <LulusBox student={student} /> : student.status == "tidak lulus" ? <GagalBox student={student} /> : <BersyaratBox student={student} /> : null}
                     {isNotFound && <Box textAlign={"center"}>
